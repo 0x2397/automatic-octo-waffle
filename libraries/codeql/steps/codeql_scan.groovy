@@ -4,8 +4,7 @@ void call() {
         creds: "undefined:undefined"
     ]
     def codeql_config = config.withDefault(codeql_defaults.&get)
-    def repo_name =  build.environment
-            .get("GIT_URL")
+    def repo_name =  "${GIT_URL}"
             .replaceAll("git@github.com:", "")
             .replaceAll(".git", "")
     echo "Running CodeQL scans"
