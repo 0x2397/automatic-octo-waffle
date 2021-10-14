@@ -13,9 +13,9 @@ void call() {
     echo "Running CodeQL scans"
     // sh "curl -LO https://github.com/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz"
     // sh "tar -xvzf ./codeql-bundle-linux64.tar.gz"
-    sh "rm -rf codeql-db | true"
+    sh "rm -rf codeql-db"
     sh "codeql/codeql database create codeql-db --language=${codeql_config.language}"
     sh "codeql/codeql database analyze codeql-db ${codeql_config.language}-security-and-quality.qls --format=sarifv2.1.0 --output=analysis-results.sarif"
-    sh "codeql/codeql github upload-results --repository=${repo_name} --ref=refs/heads/${BRANCH_NAME} --commit=${GIT_COMMIT} --sarif=analysis-results.sarif"
-    sh "curl --user ${codeql_config.creds} -o alerts.json https://api.github.com/repos/${repo_name}/code-scanning/alerts?ref=refs/heads/${BRANCH_NAME}&state=open&per_page=100"
+    sh "codeql/codeql github upload-results --repository=${repo_name} --ref=refs/heads/${BRANCH_NAME} --commit=${GIT_COMMIT} --sarif=analysis-results.sarif | true"
+    sh "curl --user ${codeql_config.creds} -o alerts.json https://api.github.com/repos/${repo_name}/code-scanning/alerts?ref=refs/heads/${BRANCH_NAME}&state=open&per_page=100 | true"
 }
