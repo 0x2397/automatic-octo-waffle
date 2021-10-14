@@ -1,6 +1,6 @@
 void call() {
     def codeql_defaults = [
-        language: "nodejs"
+        language: "nodejs",
         creds: "undefined:undefined"
     ]
     def codeql_config = config.withDefault(codeql_defaults.&get)
