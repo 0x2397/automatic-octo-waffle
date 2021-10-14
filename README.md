@@ -43,7 +43,7 @@ implementations { npm build, yarn build, docker build }
 
 **Template Methods**
 
-Template methods allow the definition of required steps in a particular Jenkins run with the templating engine. Steps not implemented are replaced with a no-op step logging _"step x is not implemented"._
+Template methods allow the definition of required steps in a particular Jenkins run with the templating engine. Steps not implemented are replaced with a no-op step logging _"step x is not implemented"._ These can also be conditional
 
   
 
@@ -79,7 +79,7 @@ This Groovy annotation sets up a groovy method as a hook at the beginning of the
 
   
 
-**@Notify**
+**@Notify({ conditional })**
 
 This Groovy annotation sets up a groovy method as a hook on every step after the **@AfterStep** in the Jenkins Pipeline.
 
