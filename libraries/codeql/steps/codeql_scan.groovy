@@ -1,11 +1,11 @@
 void call() {
     def codeql_config = [
-        language: "nodejs",
-        creds: "undefined:undefined"
+        "language": "nodejs",
+        "creds": "undefined:undefined"
     ]
 
-    if (codeql_config.hasKey("language"))codeql_config["language"] = config.language
-    if (codeql_config.hasKey("creds"))codeql_config["creds"] = config.creds
+    if (codeql_config.containsKey("language"))codeql_config["language"] = config.language
+    if (codeql_config.containsKey("creds"))codeql_config["creds"] = config.creds
 
     def repo_name =  "${GIT_URL}"
             .replaceAll("git@github.com:", "")
